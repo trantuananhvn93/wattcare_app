@@ -133,8 +133,6 @@ Installing `knex` in global first
 npm install knex -g
 ```
 
-From your root, ```cd data```.
-
 ```bash
 knex migrate:latest
 ```
