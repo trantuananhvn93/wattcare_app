@@ -1,0 +1,15 @@
+<%- include ("../partials/navbar") %>
+<div>
+    <h1>Users in DB</h1>
+
+    <ul>
+
+        <% for (let i = 0; i < users.length; i++) { %>
+            <li>
+                <%= users[i].name %> -
+                    <%= users[i].email %>
+            </li>
+            <% } %>
+    </ul>
+
+</div>
