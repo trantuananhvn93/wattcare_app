@@ -1,9 +1,11 @@
 const { wrap } = require('async-middleware');
+
+const login = require('./commands/login');
 const loadPage = require('./commands/load-page');
 
 module.exports = router => {
-  // router.post('/data', wrap(verifyRequestBody), wrap(login), wrap(redirectToDashboard));
-  // router.get('/data', wrap(loadPage));
+  router.post('/login', wrap(login));
+  router.get('/login', wrap(loadPage));
 
   return router;
 };
