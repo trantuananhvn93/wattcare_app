@@ -4,6 +4,7 @@ const router = express.Router();
 const knex = require('../data/db');
 
 const mountLoginRoutes = require('../features/login/routes');
+const mountLogoutRoutes = require('../features/logout/routes');
 
 function isAuthenticated(req, res, next) {
   if (req.user && req.isAuthenticated()) {
@@ -25,6 +26,6 @@ router.get("/dashboard", isAuthenticated, async (req, res) => {
 
 
 mountLoginRoutes(router);
-
+mountLogoutRoutes(router);
 
 module.exports = router;

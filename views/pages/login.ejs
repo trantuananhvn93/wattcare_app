@@ -1,3 +1,14 @@
+<h1>Log in</h1>
+
+<!-- Display errors -->
+<% if (locals.messages && messages.errors) { %>
+    <% Object.keys(messages.errors).filter(function(key) { return ['username', 'invalidEmailOrPassword', 'internalServerError'].includes(key); }).map(function(key) { %>
+      <strong class="invalid-feedback" style="display: block">
+        <%= messages.errors[key] %>
+      </strong>
+    <% }) %>
+  <% } %>
+
 <form action="/login" method="post">
     <div class="input">
         <label for="name">User Name</label>
