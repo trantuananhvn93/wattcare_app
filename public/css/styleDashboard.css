@@ -1,0 +1,293 @@
+/*
+    DEMO STYLE
+*/
+
+/* @import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"; */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap');
+
+body {
+	font-family: 'Open Sans', sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
+    background: #F0f0f0;
+}
+
+p {
+    /* font-family: 'Poppins', sans-serif; */
+	font-family: 'Open Sans', sans-serif;
+    font-size: 0.7em;
+    font-weight: 300;
+    line-height: 0.3em;
+    color: #FFF;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    /* transition: all 0.3s; */
+}
+
+/* .navbar { */
+    /* padding: 15px 10px; */
+    /* background: #fff; */
+    /* border: none; */
+    /* border-radius: 0; */
+    /* margin-bottom: 40px; */
+    /* box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1); */
+/* } */
+
+/* .navbar-btn { */
+    /* box-shadow: none; */
+    /* outline: none !important; */
+    /* border: none; */
+/* } */
+
+/* .line { */
+    /* width: 100%; */
+    /* height: 1px; */
+    /* border-bottom: 1px dashed #ddd; */
+    /* margin: 40px 0; */
+/* } */
+
+/* ---------------------------------------------------
+    SIDEBAR STYLE
+----------------------------------------------------- */
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+	justify-content: space-between;
+}
+
+#sidebar {
+    min-width: 200px;
+    max-width: 200px;
+    background: #0535AF;
+    color: #fff;
+    /* transition: all 0.3s; */
+	height: 100vh;
+	border-radius: 0 0 150px 0px;
+	/* margin-top: -60px; */
+}
+
+#sidebar.active {
+    margin-left: -250px;
+}
+
+#sidebar .sidebar-header {
+    padding: 20px;
+    background: #0535AF;
+}
+
+#sidebar .sidebar-header #WATTCARE_BLANC{
+	width: 150px;
+	height: 25px;
+	/* margin-left: 0px; */
+}
+
+#sidebar .sidebar-header #ID_VERT{
+	margin-top: 80px;
+	width: 40px;
+	height: 40px;
+}
+
+#sidebar hr{
+	height: 0.25px;
+	/* margin: -0.5em 0; */
+	/* padding: 0; */
+	/* color: #2BD987; */
+	background-color: #2BD987;
+	/* border: 10; */
+}
+
+#sidebar ul.components {
+    padding: 20px 0; /* décalage vertical */
+    /* border-bottom: 1px solid #47748b; */
+}
+
+#sidebar ul p {
+    color: #fff;
+    padding: 10px;
+}
+
+#sideBarLinkDashboard{
+    background-image: url('../image/TABLEAU_BORD_VERT.png');
+}
+#sidebar ul li a#sideBarLinkDashboard:hover, #sidebar ul li a#sideBarLinkDashboard:focus{
+    background-image: url('../image/TABLEAU_BORD_BLANC.png');
+}
+
+#sideBarLinkSettings{
+    background-image: url('../image/REGLAGE_VERT.png');
+}
+#sidebar ul li a#sideBarLinkSettings:hover,  #sidebar ul li a#sideBarLinkSettings:focus{
+    background-image: url('../image/REGLAGE_BLANC.png');
+}
+
+#sideBarLinkAdd{
+    background-image: url('../image/AJOUTER_CAPTEUR_VERT.png');
+}
+#sidebar ul li a#sideBarLinkAdd:hover, #sidebar ul li a#sideBarLinkAdd:focus{
+    background-image: url('../image/AJOUTER_CAPTEUR_BLANC.png');
+}
+
+#sidebar ul li a:hover, #sidebar ul li a:focus {
+    color: #FFF;
+    background: #2BD987;
+	border-radius: 30px 0 0 30px;
+}
+#sidebar ul li a, #sidebar ul li a:hover, #sidebar ul li a:focus {
+    background-position: 25px 15px;
+    background-repeat: no-repeat;
+	background-size: 18px 18px;
+    text-indent: 40px;
+    padding: 15px;
+    font-size: 0.7em;
+    display: block;
+}
+
+
+/* ---------------------------------------------------
+    CONTENT NAVBAR STYLE
+----------------------------------------------------- */
+
+#content {
+    /* width: 100%; */
+    /* padding: 20px; */
+    /* min-height: 100vh; */
+    /* transition: all 0.3s; */
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+/* #content{ */
+	/* margin-right: 20px; */
+/* } */
+
+/* #content .nav { */
+	/* margin-right: 20px; */
+/* } */
+
+#content .nav-item a img{
+	width: 35px;
+	height: 35px;
+}
+#content #decoImg{
+	width: 20px;
+	height: 20px;
+	margin-right: 10px;
+}
+#content .nav-item #deconnexion{
+	/* width: 40px; */
+	/* height: 40px; */
+	/* background-size: 0px 0px; */
+	margin-top: 10px;
+	margin-left: 15px;
+	color: #FFF;
+    background: #2BD987;
+	border-radius: 30px 30px 30px 30px;
+	font-size: 0.6em;
+}
+
+
+/* ---------------------------------------------------
+    CONTENT TABLE STYLE
+----------------------------------------------------- */
+.centre{
+	text-align: center;
+}
+#submitGauche{
+	background: #2BD987;
+	color: #FFF;
+    float: right;
+    margin-right: 7%;
+}
+
+#submitDroite{
+	/* background: #2BD987; */
+	color: #0535AF;
+    float: left;
+    margin-left: 7%;
+}
+
+.fresh-table button{
+	border-radius: 30px 30px 30px 30px;
+	font-size: 0.7em;
+	margin: 1em;
+	height: 30px;
+	border: none;
+}
+
+.fresh-table form{
+    width: 50%;
+}
+.fresh-table #gauche{
+    /* margin-left: 20%; */
+    float:left;
+}
+
+.fresh-table #droite{
+    /* margin-left: 40%; */
+    overflow:auto;
+    /* display: flex; */
+}
+
+.fresh-table{
+	margin-top: 18vh;
+	margin-left: 10%;
+    box-shadow: -15px 27px 69px rgba(0,0,0,.20);
+	background-color: #F0f0f0;
+	border-radius: 50px 50px 0 0;
+    padding-bottom: 15px;
+}
+.card-body{
+    text-align: left;
+    margin-left: 8%;
+}
+#fresh-table{
+    color: #0535AF !important;
+}
+#ID{
+   text-align: end;
+}
+#status {
+    width: 100px;
+}
+.fresh-table img{
+	width: 20px;
+	height: 20px;
+}
+
+.fresh-table .OK {
+    background-color: #F0f0f0;
+    color: #0535AF;
+}
+
+.fresh-table .ALERTE {
+    background-color: #0535AF;
+    color: #FFF;
+}
+
+.fresh-table .ALERTEstatus{
+    color: #2BD987;
+    font-weight: bold;
+}
+
+
+/* ---------------------------------------------------
+    MEDIAQUERIES
+----------------------------------------------------- */
+ @media (max-width: 768px) {
+	 
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
+}

@@ -1,4 +1,5 @@
 exports.up = async function up(knex) {
+
     await knex.schema.createTable('users', table => {
       table
         .increments('id')
@@ -20,6 +21,7 @@ exports.up = async function up(knex) {
   
       table.unique('email');
     });
+
   };
   
   exports.down = async function down(knex) {

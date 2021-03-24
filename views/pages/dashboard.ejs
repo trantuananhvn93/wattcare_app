@@ -1,15 +1,83 @@
-<%- include ("../partials/navbar") %>
-<div>
-    <h1>Users in DB</h1>
+<link rel="stylesheet" href="/css/styleDashboard.css">
 
-    <ul>
+<div class="wrapper">
 
-        <% for (let i = 0; i < users.length; i++) { %>
-            <li>
-                <%= users[i].name %> -
-                    <%= users[i].email %>
-            </li>
-            <% } %>
-    </ul>
-
+    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#wattcare_errorModal"> -->
+        <!-- Launch demo modal -->
+      <!-- </button> -->
+    <%- include('../partials/navbar'); %>
+    <%- include('../partials/sidebar'); %>
+    <div class="container">
+        <div class="col-md-10 col-md-offset-2" id="accordion">
+            <div class="fresh-table">
+                <table id="fresh-table" class="table table-borderless centre">
+                    <thead>
+                        <th data-field="id" id="ID">ID</th>
+                        <th data-field="room_number" data-sortable="true" id="room_number">N° Chambre</th>
+                        <th data-field="status" data-sortable="false" id="status">Etat</th>
+                        <th data-field="actions" data-formatter="operateFormatter" data-events="operateEvents">Actions</th>
+                    </thead>
+                    <tbody>
+                        <% capteurs.forEach(function(capteurs) { %>	
+                            <tr id="info<%= capteurs.id %>" class="<%= capteurs.status %>">
+                                <td id="ID"><%= capteurs.id %></td>
+                                <td id="room_number"><%= capteurs.room_number %></td>
+                                <td id="status<%= capteurs.id %>" class="<%= capteurs.status %>status"><%= capteurs.status %></td>
+                            <% if(capteurs.status == "ALERTE") { %>
+                                <td>
+                                    <!-- onclick="changeBackGroundColor('message<%= capteurs.id %>', 'img<%= capteurs.id %>', 'info<%= capteurs.id %>', 'status<%= capteurs.id %>')" -->
+                                    <a data-toggle="collapse" data-target="#collapse<%= capteurs.id %>"  onclick="toggleImg('imgDown<%= capteurs.id %>', 'imgUp<%= capteurs.id %>')">
+                                        <img id="imgDown<%= capteurs.id %>" style="display:inline" src="./image/FLECHE_BAS_VERT.png" alt=""/>
+                                        <img id="imgUp<%= capteurs.id %>" style="display:none" src="./image/FLECHE_HAUT_VERT.png" alt=""/>
+                                    </a>
+                                </td>
+                            </tr>
+                            
+                            <tr id="message<%= capteurs.id %>" class="<%= capteurs.status %>">
+                                <td colspan="5">
+                                    <div id="collapse<%= capteurs.id %>" class="collapse">
+                                        <div class="card-body">
+                                            CHAMBRE N°<%= capteurs.room_number %><br>"Le patient <%= capteurs.name %> (<%= capteurs.age %> ans) semble avoir chuté"
+                                        </div>
+                                        <div>
+                                            <form action="/resetAlarm" method="POST" id="gauche">
+                                                <input name="ID" style="display:none" value="<%= capteurs.id %>">
+                                                <button type="submit" value="<%= capteurs.id %>" id="submitGauche" data-toggle="collapse" data-target="#collapse<%= capteurs.id %>">VALIDER - PATIENT PRIS EN CHARGE</button>
+                                            </form>
+                                            <form action="/dysfonctionnement" method="POST" id="droite">
+                                                <input name="ID" style="display:none" value="<%= capteurs.id %>">
+                                                <button type="submit" id="submitDroite"  data-toggle="collapse" data-target="#collapse<%= capteurs.id %>">SIGNALER UN DYSFONCTIONNEMENT</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <% } %>
+                        <% }); %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="wattcare_errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content wc_modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer alert alert-danger">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
