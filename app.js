@@ -16,6 +16,8 @@ app.listen(3000, () => {
 const path = require("path");
 // layout for ejs
 const expressLayouts = require('express-ejs-layouts');
+// use post method
+const bodyParser = require('body-parser');
 
 
 // html rendering engine and layout
