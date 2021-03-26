@@ -14,3 +14,27 @@
     </ul>
 
 </div>
+<div id="content"></div>
+
+<form action="/fact" method="post">
+    <div class="button fact">
+        <button><span>Add fact</span> <i class="fa fa-check"></i></button>
+    </div>
+
+  </form>  
+
+<script type="text/javascript">
+    const source = new EventSource('/events');
+
+    source.addEventListener('message', message => {
+        // console.log('Got', message);
+
+        // Display the event data in the `content` div
+        // document.querySelector('#content').innerHTML = event.data;
+        json = JSON.parse(event.data);
+        if (json.refresh){
+            location.reload();
+        }
+        
+    });
+</script>
