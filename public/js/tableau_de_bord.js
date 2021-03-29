@@ -57,28 +57,3 @@ eventSource.onmessage = event => {
 
 /* fermeture de la connexion */
 // eventSource.close();
-
-// const source = new EventSource('/events');
-// source.addEventListener('message', message => {
-// 	console.log('Got', message);
-
-// 	// Display the event data in the `content` div
-// 	document.querySelector('#content').innerHTML = event.data;
-// });
-
-
-// fetch('http://localhost:8080', {
-//     method: 'POST',
-//     body: JSON.stringify(data) 
-// })
-
-// // function to handle success
-// function success() {
-//     var data = JSON.parse(this.responseText); //parse the string to JSON
-//     console.log(data);
-// }
-
-// // function to handle error
-// function error(err) {
-//     console.log('Request Failed', err); //error details will be in the "err" object
-// }
