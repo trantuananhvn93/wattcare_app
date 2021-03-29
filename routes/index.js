@@ -5,6 +5,7 @@ const knex = require('../data/db');
 
 const mountLoginRoutes = require('../features/login/routes');
 const mountLogoutRoutes = require('../features/logout/routes');
+const SendmailTransport = require('nodemailer/lib/sendmail-transport');
 
 function isAuthenticated(req, res, next) {
   if (req.user && req.isAuthenticated()) {
@@ -12,6 +13,24 @@ function isAuthenticated(req, res, next) {
   }
 
   return res.redirect('/login');
+}
+
+
+router.get("/stream", (req,res) => {
+  res.setHeader("Content-Type", "text/event-stream");
+  const listenner = require('../features/notification/test');
+  let payload = listenner.connect();
+  console.log(payload);
+  res.write("data: " + payload);
+  // send(res);
+})
+
+let i = 0;
+function send (res) {
+  res.write("data: " + `hello!${i++}\n\n`);
+
+  setTimeout(() => send(res), 1000);
+
 }
 
 router.get('/', isAuthenticated, async (req, res) => {
@@ -43,16 +62,6 @@ router.post('/dysfonctionnement', async (req, res) => {
     await knex('capteurs').select().where('id', req.body.ID).update({'dysfonctionnement': dys});
 
     res.redirect('/');
-    // console.log(req.body.ID);
-    // if(dysfonctionnement[(req.body.ID)-1]){
-    //   dysfonctionnement[(req.body.ID)-1].compteur++;
-    //   console.log("Nombre de dysfonctionnement du capteur: " + dysfonctionnement[(req.body.ID)-1].compteur);
-    // }
-    // else{
-    //   console.log("Impossible de prendre en compte le dysfonctionnement du capteur: " + req.body.ID);
-    //   console.log("Probleme de taille de variable");
-    // }
-    // res.redirect('/');
   }
 });
 

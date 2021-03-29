@@ -3,8 +3,8 @@ require('dotenv').config();
 
 const express = require("express");
 const session = require('express-session');
+// var SSE = require('express-sse');
 const app = express();
-
 
 // Open port
 app.listen(3000, () => {
@@ -59,3 +59,6 @@ app.use('/', indexRouter);
 app.use((req, res) => {
     res.status(404).render('pages/404');
 });
+
+// const listenner = require('./features/notification/test');
+// listenner.connect();
