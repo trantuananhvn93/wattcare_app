@@ -16,7 +16,7 @@ var event = require('./event').eventBus;
 
 
 function setupConnection(connection, knex) {
-    connection.query('LISTEN watchers');
+    connection.query('LISTEN alert_detected');
 
     connection.on('notification', (msg) => {
         // console.log("received notification:", msg);

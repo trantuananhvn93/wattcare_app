@@ -265,12 +265,12 @@ a:focus {
     color: #0535AF;
 }
 
-.fresh-table .ALERTE {
+.fresh-table .true {
     background-color: #0535AF;
     color: #FFF;
 }
 
-.fresh-table .ALERTEstatus{
+.fresh-table .truestatus{
     color: #2BD987;
     font-weight: bold;
 }
