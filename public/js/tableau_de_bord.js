@@ -1,9 +1,4 @@
-// Variable globales
-var data = {
-	title: "foo",
-	body: "bar", 
-	userId:1
-}
+// const { get } = require("../../routes");
 
 
 
@@ -32,28 +27,44 @@ function resetStatus(message, info, imgDown, imgUp){
 	hideImg(imgDown, imgUp);
 }
 
-const eventSource = new EventSource('http://localhost:3000/stream');
+const source = new EventSource('/events');
+
+    // source.addEventListener('message', message => {
+    //     // console.log('Got', message);
+
+    //     // Display the event data in the `content` div
+    //     // document.querySelector('#content').innerHTML = event.data;
+    //     json = JSON.parse(event.data);
+    //     if (json.refresh){
+    //         location.reload();
+    //     }
+        
+    // });
 
 /* Connexion pour sent event */
-eventSource.onopen = () => {
+source.onopen = () => {
   console.log('connected');
 };
 
 /* Gestion des erreurs pour la connexion sent event */
-eventSource.onerror = event => {
+source.onerror = event => {
   console.log(event);
-  if (eventSource.readyState === EventSource.CLOSED) {
+  if (source.readyState === source.CLOSED) {
     /* Traitement en cas de perte de connexion définitif avec le serveur */
   }
-  if (eventSource.readyState === EventSource.CONNECTING) {
+  if (source.readyState === source.CONNECTING) {
     /* En cas de perte de connexion temporaire avec le serveur */
   }
 };
 /* Récupération du message provenant du server */
 /* Le contenu du message est dans la propriété 'data' */
-eventSource.onmessage = event => {
+source.onmessage = event => {
 	console.log(event.data);
-  };
+	json = JSON.parse(event.data);
+	if (json.refresh){
+		location.reload();
+	}
+};
 
 /* fermeture de la connexion */
-// eventSource.close();
+// source.close();

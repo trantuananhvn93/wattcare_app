@@ -19,9 +19,12 @@ await knex.raw(
 
   await knex.raw(`
 CREATE TRIGGER notify_capteur_changes
-AFTER INSERT OR UPDATE
+AFTER INSERT OR UPDATE OF status
 ON public.capteurs
 FOR EACH ROW
 EXECUTE PROCEDURE notify_capteur_changes()
   `);
 }
+
+-- Supprimer le trigger sur la table capteurs
+DROP TRIGGER notify_capteur_changes ON public.capteurs

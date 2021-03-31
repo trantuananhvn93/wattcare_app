@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const express = require("express");
 const session = require('express-session');
-// var SSE = require('express-sse');
+const flash = require('connect-flash');
 const app = express();
 
 // Open port
@@ -32,8 +32,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: false
 }));
+app.use(flash());
 // path of static files
 app.use(express.static(path.join(__dirname, "public")));
 
@@ -59,6 +60,3 @@ app.use('/', indexRouter);
 app.use((req, res) => {
     res.status(404).render('pages/404');
 });
-
-// const listenner = require('./features/notification/test');
-// listenner.connect();

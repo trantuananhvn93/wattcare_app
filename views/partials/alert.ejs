@@ -1,0 +1,9 @@
+
+<% if(locals.messages && locals.messages.info) { %>
+	<div class="alert alert-light" id="dysfonctionnement" role="alert">
+		<%= locals.messages.info %> 
+		<button class="close" data-dismiss="alert" aria-label="Close">
+			<span id="corssCloseWattcare" aria-hidden="true">&times;</span>
+		</button>
+	</div>
+<% } %>
