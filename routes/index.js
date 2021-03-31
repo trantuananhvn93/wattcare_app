@@ -17,12 +17,6 @@ function isAuthenticated(req, res, next) {
   return res.redirect('/login');
 }
 
-const knex2 = require('knex');
-
-const knexfile = require('../knexfile');
-
-const knex_chirpstack = knex2(knexfile['testing']);
-
 
 router.get('/', isAuthenticated, async (req, res) => {
 
@@ -33,11 +27,7 @@ router.get('/', isAuthenticated, async (req, res) => {
   //console.log(organisation);
 
   var sensors = await knex('sensors');
-  // console.log(sensors);
-  let id = sensors[0].dev_eui;
-
-  var device_up = await knex_chirpstack('device_up').select().where('dev_eui', id);
-  console.log("DEVICE UP TABLE", device_up);
+  
 
   res.render('pages/dashboard', {
     sensors: sensors,

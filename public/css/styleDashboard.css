@@ -187,11 +187,6 @@ a, a:hover, a:focus {
 	width: 20px;
 	height: 20px;
 }
-.fresh-table .OK {
-    background-color: #F0f0f0;
-    color: #0535AF;
-}
-
 .fresh-table .true {
     background-color: #0535AF;
     color: #FFF;
@@ -211,7 +206,7 @@ a, a:hover, a:focus {
     left: 250px;
     /* text-align: center; */
     color: #0535AF;
-    background-image: url('../image/ALERTE.png');
+    background-image: url('../image/CHECK.png');
     background-repeat: no-repeat;
 	background-size: 18px 18px;
     background-position: 25px 18px;

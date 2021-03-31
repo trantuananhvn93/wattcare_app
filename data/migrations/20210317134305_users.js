@@ -46,6 +46,7 @@ exports.up = async function up(knex) {
 
   await knex.schema.createTable('sensors', table => {
     table.binary('dev_eui').primary();
+    table.integer('id').unsigned().notNullable();
     table.integer('org_id').unsigned().notNullable();
     table.foreign('org_id').references('id').inTable('organisations').onDelete("CASCADE");
     table.integer('error').defaultTo(0);
@@ -56,7 +57,7 @@ exports.up = async function up(knex) {
       .notNullable()
       .defaultTo(knex.fn.now());
 
-    // table.unique('dev_eui');
+    table.unique('id');
   });
 
 
@@ -78,7 +79,7 @@ $$ LANGUAGE plpgsql;
 
   // Assign trigger
   await knex.raw(`
-CREATE TRIGGER sensors_changed AFTER UPDATE ON sensors
+CREATE TRIGGER sensors_changed AFTER INSERT OR UPDATE OF status ON sensors
 FOR EACH ROW EXECUTE PROCEDURE notify_trigger();
 `);
 

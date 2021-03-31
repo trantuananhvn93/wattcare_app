@@ -19,6 +19,7 @@ exports.seed = async function seed(knex) {
 
   await knex('sensors').insert({
     dev_eui: Buffer.from('96ae6715965eacef','hex'),
+    id: 1,
     org_id: 1,
     location: '369',
     error: 0,
@@ -26,10 +27,25 @@ exports.seed = async function seed(knex) {
     created_at: new Date()
   });
 
-  // await knex.raw(
-  //   `
-  //   INSERT INTO sensors(dev_eui, org_id, location)
-  //   VALUES (decode('96ae6715965eacef', 'hex'), 1, 'chambre 369');
-  //   `
-  // );
+  await knex('sensors').insert({
+    dev_eui: Buffer.from('96ae6715965eacff','hex'),
+    id: 2,
+    org_id: 1,
+    location: '333',
+    error: 0,
+    status: 1,
+    created_at: new Date()
+  });
+
+  await knex('sensors').insert({
+    dev_eui: Buffer.from('96ae6715965eacee','hex'),
+    id: 3,
+    org_id: 1,
+    location: '666',
+    error: 0,
+    status: 1,
+    created_at: new Date()
+  });
+
+ 
 };
