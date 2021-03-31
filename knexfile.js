@@ -12,7 +12,7 @@ module.exports = {
 
   testing: {
     client: 'pg',
-    connection: process.env.DATABASE_URL,
+    connection: process.env.DATABASE_URL_CHIRPSTACK,
     migrations: {
       directory: './data/migrations',
     },

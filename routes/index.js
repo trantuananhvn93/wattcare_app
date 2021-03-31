@@ -17,6 +17,12 @@ function isAuthenticated(req, res, next) {
   return res.redirect('/login');
 }
 
+const knex2 = require('knex');
+
+const knexfile = require('../knexfile');
+
+const knex_chirpstack = knex2(knexfile['testing']);
+
 
 router.get('/', isAuthenticated, async (req, res) => {
 
@@ -26,12 +32,15 @@ router.get('/', isAuthenticated, async (req, res) => {
   const organisation = await knex('organisations');
   //console.log(organisation);
 
-  var capteurs = await knex('capteurs').orderBy('id');
-  //console.log(capteurs);
+  var sensors = await knex('sensors');
+  // console.log(sensors);
+  let id = sensors[0].dev_eui;
 
+  var device_up = await knex_chirpstack('device_up').select().where('dev_eui', id);
+  console.log("DEVICE UP TABLE", device_up);
 
   res.render('pages/dashboard', {
-    capteurs: capteurs,
+    sensors: sensors,
     user: user,
     organisation: organisation
   });
@@ -42,10 +51,9 @@ router.get('/', isAuthenticated, async (req, res) => {
 router.post('/dysfonctionnement', async (req, res) => {
   if (res.statusCode == 200)
 	{
-    //traitement pour la base de donnée
-    var capteur = await knex('capteurs').select().where('id', req.body.ID).limit(1);
-    var dys = capteur[0].dysfonctionnement + 1;
-    await knex('capteurs').select().where('id', req.body.ID).update({'dysfonctionnement': dys});
+    var sensor = await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")).limit(1);
+    var err = sensor[0].error + 1;
+    await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")).update({'error': err});
 
     req.session.messages = {"info": "Le dysfonctionnement a ete pris en charge !"};
     res.redirect('/');
@@ -54,9 +62,10 @@ router.post('/dysfonctionnement', async (req, res) => {
 
 router.post('/resetAlarm', async (req, res) => {
   if (res.statusCode == 200)
-	{
-    await knex('capteurs').select().where('id', req.body.ID).update({status: 'OK'});
-    console.log(await knex('capteurs').select().where('id', req.body.ID));
+	{ 
+    await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")).update({status: false});
+    // console.log("ANH: ", await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")));
+
     res.redirect('/');
   }
 });

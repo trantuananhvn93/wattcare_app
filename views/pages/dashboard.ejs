@@ -14,40 +14,40 @@
                 <table id="fresh-table" class="table table-borderless centre">
                     <thead>
                         <th data-field="id" id="ID">ID</th>
-                        <th data-field="room_number" data-sortable="true" id="room_number">N° Chambre</th>
+                        <th data-field="location" data-sortable="true" id="location">N° Chambre</th>
                         <th data-field="status" data-sortable="false" id="status">Etat</th>
                         <th data-field="actions" data-formatter="operateFormatter" data-events="operateEvents">Actions</th>
                     </thead>
                     <tbody>
-                        <% capteurs.forEach(function(capteurs) { %>	
-                            <tr id="info<%= capteurs.id %>" class="<%= capteurs.status %>">
-                                <td id="ID"><%= capteurs.id %></td>
-                                <td id="room_number"><%= capteurs.room_number %></td>
-                                <td id="status<%= capteurs.id %>" class="<%= capteurs.status %>status"><%= capteurs.status %></td>
-                            <% if(capteurs.status == "ALERTE") { %>
+                        <% sensors.forEach(function(sensor) { %>
+                            <% sensor_id = sensor.dev_eui.toString('hex')%>	
+                            <tr id="info<%= sensor_id %>" class="<%= sensors.status %>">
+                                <td id="ID"><%= sensor_id  %></td>
+                                <td id="location"><%= sensor.location %></td>
+                                <td id="status<%= sensor_id %>" class="<%= sensor.status %>status"><%= sensor.status %></td>
+                            <% if (sensor.status) { %>
                                 <td>
-                                    <!-- onclick="changeBackGroundColor('message<%= capteurs.id %>', 'img<%= capteurs.id %>', 'info<%= capteurs.id %>', 'status<%= capteurs.id %>')" -->
-                                    <a data-toggle="collapse" data-target="#collapse<%= capteurs.id %>"  onclick="toggleImg('imgDown<%= capteurs.id %>', 'imgUp<%= capteurs.id %>')">
-                                        <img id="imgDown<%= capteurs.id %>" style="display:inline" src="./image/FLECHE_BAS_VERT.png" alt=""/>
-                                        <img id="imgUp<%= capteurs.id %>" style="display:none" src="./image/FLECHE_HAUT_VERT.png" alt=""/>
+                                    <a data-toggle="collapse" data-target="#collapse<%= sensor_id %>"  onclick="toggleImg('imgDown<%= sensor_id %>', 'imgUp<%= sensor_id %>')">
+                                        <img id="imgDown<%= sensor_id%>" style="display:inline" src="./image/FLECHE_BAS_VERT.png" alt=""/>
+                                        <img id="imgUp<%= sensor_id %>" style="display:none" src="./image/FLECHE_HAUT_VERT.png" alt=""/>
                                     </a>
                                 </td>
                             </tr>
                             
-                            <tr id="message<%= capteurs.id %>" class="<%= capteurs.status %>">
+                            <tr id="message<%= sensor_id %>" class="<%= sensor.status %>">
                                 <td colspan="5">
-                                    <div id="collapse<%= capteurs.id %>" class="collapse">
+                                    <div id="collapse<%= sensor_id %>" class="collapse">
                                         <div class="card-body">
-                                            CHAMBRE N°<%= capteurs.room_number %><br>"Le patient <%= capteurs.name %> (<%= capteurs.age %> ans) semble avoir chuté"
+                                            CHAMBRE N°<%= sensor.location %><br>"Le patient semble avoir chuté"
                                         </div>
                                         <div>
                                             <form action="/resetAlarm" method="POST" id="gauche">
-                                                <input name="ID" style="display:none" value="<%= capteurs.id %>">
-                                                <button type="submit" value="<%= capteurs.id %>" id="submitGauche" data-toggle="collapse" data-target="#collapse<%= capteurs.id %>">VALIDER - PATIENT PRIS EN CHARGE</button>
+                                                <input name="ID" style="display:none" value=<%= sensor_id %>>
+                                                <button type="submit" id="submitGauche">VALIDER - PATIENT PRIS EN CHARGE</button>
                                             </form>
                                             <form action="/dysfonctionnement" method="POST" id="droite">
-                                                <input name="ID" style="display:none" value="<%= capteurs.id %>">
-                                                <button type="submit" id="submitDroite"  data-toggle="collapse" data-target="#collapse<%= capteurs.id %>">SIGNALER UN DYSFONCTIONNEMENT</button>
+                                                <input name="ID" style="display:none" value="<%= sensor_id %>">
+                                                <button type="submit" id="submitDroite">SIGNALER UN DYSFONCTIONNEMENT</button>
                                             </form>
                                         </div>
                                     </div>
