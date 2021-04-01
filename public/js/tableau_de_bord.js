@@ -27,6 +27,32 @@ function resetStatus(message, info, imgDown, imgUp){
 	hideImg(imgDown, imgUp);
 }
 
+function saveValue(sensorId){
+	document.getElementById('sendModalWattcare').value = sensorId;
+}
+function enablePrecision(){
+	document.getElementById('autreDysfonctionnement').disabled = false;
+}
+function desablePrecision(){
+	document.getElementById('autreDysfonctionnement').disabled = true;
+	document.getElementById('autreDysfonctionnement').value = "";
+}
+
+function tailleMax(element, max){
+    value = element.value;
+    max = parseInt(max);
+	nbCar = value.length;
+	carLeft = max-nbCar;
+	if(carLeft < 0){
+		carLeft = 0;
+	}
+    if(value.length > max){
+        element.value = value.substr(0, max);
+    }
+	document.getElementById('textHelp').innerHTML = 'Saisir 100 caractères maximum.<br>Disponible: ' + carLeft;
+}
+
+document.addEventListener
 const source = new EventSource('/events');
 
     // source.addEventListener('message', message => {

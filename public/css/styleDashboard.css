@@ -14,6 +14,20 @@ a, a:hover, a:focus {
     text-decoration: none;
     /* transition: all 0.3s; */
 }
+button{
+	border-radius: 30px 30px 30px 30px;
+	font-size: 0.8em;
+	margin: 1em;
+	height: 30px;
+	border: none;
+}
+.close{
+    position: absolute;
+    right: 10px;
+    background: none;
+    border-style: none;
+    float: right;
+}
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
@@ -146,13 +160,6 @@ a, a:hover, a:focus {
     float: left;
     margin-left: 7%;
 }
-.fresh-table button{
-	border-radius: 30px 30px 30px 30px;
-	font-size: 0.7em;
-	margin: 1em;
-	height: 30px;
-	border: none;
-}
 .fresh-table form{
     width: 50%;
 }
@@ -199,14 +206,18 @@ a, a:hover, a:focus {
 /* ---------------------------------------------------
     ALERTS
 ----------------------------------------------------- */
-.alert{
+#alertError{
+    background-image: url('../image/ALERTE.png');
+}
+#alertSucess{
+    background-image: url('../image/CHECK.png');
+}
+.alertWattcare{
     position: absolute;
     width: 470px;
     top: 3vh;
     left: 250px;
-    /* text-align: center; */
     color: #0535AF;
-    background-image: url('../image/CHECK.png');
     background-repeat: no-repeat;
 	background-size: 18px 18px;
     background-position: 25px 18px;
@@ -214,12 +225,8 @@ a, a:hover, a:focus {
     display: block;
     border-radius: 30px 30px 30px 30px;
 }
-.close{
-    position: absolute;
-    right: 10px;
-    background: none;
-    border-style: none;
-    top: 10%;
+.closeAlert{
+    top: -3%;
 }
 #corssCloseWattcare{
     color: #0535AF;
@@ -233,6 +240,35 @@ a, a:hover, a:focus {
     display:none;
     display:inherit;
 } */
+/* ---------------------------------------------------
+    DYSFONCTIONNEMENT
+----------------------------------------------------- */
+#modalDysfonctionnementWattcare{
+    font-family: 'Open Sans', sans-serif;
+    /* font-size: 1em; */
+    /* font-weight: 300; */
+    /* line-height: 0.3em; */
+    color:#0535AF;
+}
+
+.modal-footer button{
+    width: 100px;
+}
+#formAnnulerWattcare {
+    color: #0535AF;
+    /* float: left; */
+    /* margin-left: 7%; */
+}
+#formEnvoyerWattcare {
+    background: #2BD987;
+	color: #FFF;
+    /* float: right; */
+    /* margin-right: 7%; */
+}
+#formCheckWattcare, #autreDysfonctionnement{
+    margin-top: 3vh;
+}
+
 /* ---------------------------------------------------
     FOOTER
 ----------------------------------------------------- */

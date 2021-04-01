@@ -1,13 +1,10 @@
 <link rel="stylesheet" href="/css/styleDashboard.css">
 
 <div class="wrapper">
-
-    <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#wattcare_errorModal"> -->
-        <!-- Launch demo modal -->
-      <!-- </button> -->
     <%- include('../partials/navbar'); %>
     <%- include('../partials/sidebar'); %>
     <%- include('../partials/alert'); %>
+    <%- include('../partials/modal'); %>
     <div class="container">
         <div class="col-md-10 col-md-offset-2" id="accordion">
             <div class="fresh-table">
@@ -51,10 +48,10 @@
                                                 <input name="ID" style="display:none" value=<%= sensor_id %>>
                                                 <button type="submit" id="submitGauche">VALIDER - PATIENT PRIS EN CHARGE</button>
                                             </form>
-                                            <form action="/dysfonctionnement" method="POST" id="droite">
+                                            <div id="droite">
                                                 <input name="ID" style="display:none" value="<%= sensor_id %>">
-                                                <button type="submit" id="submitDroite">SIGNALER UN DYSFONCTIONNEMENT</button>
-                                            </form>
+                                                <button type="button" id="submitDroite" data-toggle="modal" data-target="#modalDysfonctionnementWattcare" onclick="saveValue('<%= sensor_id %>')">SIGNALER UN DYSFONCTIONNEMENT</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </td>
@@ -67,25 +64,3 @@
         </div>
     </div>
 </div>
-
-
-<!-- Modal -->
-<div class="modal fade" id="wattcare_errorModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content wc_modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          ...
-        </div>
-        <div class="modal-footer alert alert-danger">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
-        </div>
-      </div>
-    </div>
-  </div>

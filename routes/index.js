@@ -26,7 +26,7 @@ router.get('/', isAuthenticated, async (req, res) => {
   const organisation = await knex('organisations');
   //console.log(organisation);
 
-  var sensors = await knex('sensors');
+  var sensors = await knex('sensors').orderBy('id');
   
 
   res.render('pages/dashboard', {
@@ -39,25 +39,52 @@ router.get('/', isAuthenticated, async (req, res) => {
 });
 
 router.post('/dysfonctionnement', async (req, res) => {
-  if (res.statusCode == 200)
+  	if (res.statusCode == 200)
 	{
-    var sensor = await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")).limit(1);
-    var err = sensor[0].error + 1;
-    await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")).update({'error': err});
-
-    req.session.messages = {"info": "Le dysfonctionnement a ete pris en charge !"};
-    res.redirect('/');
-  }
+		console.log(req.body);
+		var sensor = await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")).limit(1);
+		var errSent = req.body.flexRadioDefault;
+		switch (errSent) {
+			case 'pasDeChuteDetecte':
+				var addErr = sensor[0].err_no_fall_detected + 1;
+				await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")).update({'err_no_fall_detected': addErr});
+				break;
+			case 'alertesIntempestives':
+				var addErr = sensor[0].err_intempestive_alert + 1;
+				await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")).update({'err_intempestive_alert': addErr});
+				break;
+			case 'chuteNonDetecte':
+				var addErr = sensor[0].err_missed_fall + 1;
+				await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")).update({'err_missed_fall': addErr});
+				break;
+			case 'autre':
+				var errText = req.body.autreInfo;
+				if(errText.length > 100){
+					//Générer une erreur
+					req.session.messages = {
+						errors: { invalidSize: "Le message est trop grand: 100 caractères max."},
+					};
+					return res.redirect('/');
+				}
+				await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")).update({'err_other': errText});
+				break;
+			default:
+				console.log(`Désolé, erreur inconnue ${expr}.`);
+				break;
+		}
+		//Déclanche le trigger
+		// await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")).update({status: false});
+		req.session.messages = {"info": "Le dysfonctionnement a ete pris en charge !"};
+		res.redirect('/');
+	}
 });
 
 router.post('/resetAlarm', async (req, res) => {
-  if (res.statusCode == 200)
+	if (res.statusCode == 200)
 	{ 
-    await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")).update({status: false});
-    // console.log("ANH: ", await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")));
-
-    res.redirect('/');
-  }
+		await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")).update({status: false});
+		res.redirect('/');
+	}
 });
 
 const listenPSQL = require("../features/refresh/trigger");

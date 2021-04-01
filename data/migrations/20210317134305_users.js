@@ -49,7 +49,11 @@ exports.up = async function up(knex) {
     table.integer('id').unsigned().notNullable();
     table.integer('org_id').unsigned().notNullable();
     table.foreign('org_id').references('id').inTable('organisations').onDelete("CASCADE");
-    table.integer('error').defaultTo(0);
+    // table.integer('error').defaultTo(0);
+    table.integer('err_no_fall_detected').defaultTo(0);
+    table.integer('err_intempestive_alert').defaultTo(0);
+    table.integer('err_missed_fall').defaultTo(0);
+    table.string('err_other', 100);
     table.boolean('status').notNullable().defaultTo(1);
     table.string('location', 150);
     table

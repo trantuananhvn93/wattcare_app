@@ -22,7 +22,11 @@ exports.seed = async function seed(knex) {
     id: 1,
     org_id: 1,
     location: '369',
-    error: 0,
+    err_no_fall_detected: 0,
+    err_intempestive_alert: 0,
+    err_missed_fall: 0,
+    err_other: '',
+    // error: 0,
     status: 1,
     created_at: new Date()
   });
@@ -32,7 +36,11 @@ exports.seed = async function seed(knex) {
     id: 2,
     org_id: 1,
     location: '333',
-    error: 0,
+    err_no_fall_detected: 0,
+    err_intempestive_alert: 0,
+    err_missed_fall: 0,
+    err_other: '',
+    // error: 0,
     status: 1,
     created_at: new Date()
   });
@@ -42,7 +50,11 @@ exports.seed = async function seed(knex) {
     id: 3,
     org_id: 1,
     location: '666',
-    error: 0,
+    err_no_fall_detected: 0,
+    err_intempestive_alert: 0,
+    err_missed_fall: 0,
+    err_other: '',
+    // error: 0,
     status: 1,
     created_at: new Date()
   });
