@@ -3,7 +3,6 @@ require('dotenv').config();
 
 const express = require("express");
 const session = require('express-session');
-const flash = require('connect-flash');
 const app = express();
 
 // Open port
@@ -34,7 +33,6 @@ app.use(session({
     resave: false,
     saveUninitialized: false
 }));
-app.use(flash());
 // path of static files
 app.use(express.static(path.join(__dirname, "public")));
 

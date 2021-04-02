@@ -34,7 +34,6 @@ router.get('/', isAuthenticated, async (req, res) => {
     user: user,
     organisation: organisation
   });
-  // console.log(req.flash('message'));
   console.log('Affichage dashboard !');
 });
 
