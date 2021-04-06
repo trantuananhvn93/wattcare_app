@@ -1,15 +1,3 @@
-// async function listenner(knex) {
-//     const connection = await knex.client.acquireConnection();
-//     connection.query('LISTEN watchers');
-//     connection.on('notification', (msg) => {
-//         console.log("got " + msg.channel + " payload " + msg.payload);
-//     });
-//     return connection;
-// }
-
-// module.exports = listenner;
-// await knex.client.releaseConnection(connection);
-
 const knex = require("../../data/db")
 
 var event = require('./event').eventBus;
@@ -17,9 +5,8 @@ var event = require('./event').eventBus;
 
 function setupConnection(connection, knex) {
     connection.query('LISTEN alert_detected');
-
     connection.on('notification', (msg) => {
-        // console.log("received notification:", msg);
+        console.log("received notification:", msg);
         event.emit('refresh');
     });
 
@@ -58,7 +45,3 @@ function reconnectClient(knex) {
 }
 
 exports.connect = listenToPSQL;
-
-
-
-

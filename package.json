@@ -19,10 +19,16 @@
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
     "express-session": "^1.17.1",
+    "express-sse": "^0.5.3",
+    "fs": "^0.0.1-security",
     "joi": "^17.4.0",
     "knex": "^0.95.2",
+<<<<<<< HEAD
     "mqtt": "^4.2.6",
     "mqtt-match": "^2.0.3",
+=======
+    "nodemailer": "^6.5.0",
+>>>>>>> 40be65c6b2d63add715510a4a4b0f5245975bdb4
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "pg": "^8.5.1",

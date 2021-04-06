@@ -1,0 +1,21 @@
+
+<% if(locals.messages && locals.messages.info) { %>
+	<div class="alert alertWattcare alert-light" id="alertSucess" role="alert">
+		<%= locals.messages.info %> 
+		<button class="close closeAlert" data-dismiss="alert" aria-label="Close">
+			<span id="corssCloseWattcare" aria-hidden="true">&times;</span>
+		</button>
+	</div>
+<% } %>
+
+<% if (locals.messages && messages.errors) { %>
+	<% Object.keys(messages.errors).filter(function(key) { return ['username', 'invalidEmailOrPassword', 'internalServerError', 'invalidSize'].includes(key); }).map(function(key) { %>
+		<div class="alert alertWattcare alert-light" id="alertError" role="alert">
+			<%= messages.errors[key] %>
+			<button class="close closeAlert" data-dismiss="alert" aria-label="Close">
+				<span id="corssCloseWattcare" aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	<% }) %>
+<% } %>
+

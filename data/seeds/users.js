@@ -22,7 +22,6 @@ exports.seed = async function seed(knex) {
     dev_eui: '007F37200735120A',
     org_id: 1,
     location: '369',
-    error: 0,
     status: 1,
     created_at: new Date()
   });

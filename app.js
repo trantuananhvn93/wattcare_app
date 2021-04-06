@@ -5,7 +5,6 @@ const express = require("express");
 const session = require('express-session');
 const app = express();
 
-
 // Open port
 app.listen(3000, () => {
     console.log("Server started (http://localhost:3000/) !");
@@ -32,7 +31,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
-    saveUninitialized: true
+    saveUninitialized: false
 }));
 // path of static files
 app.use(express.static(path.join(__dirname, "public")));
@@ -59,5 +58,3 @@ app.use('/', indexRouter);
 app.use((req, res) => {
     res.status(404).render('pages/404');
 });
-
-
