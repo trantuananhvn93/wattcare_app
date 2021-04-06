@@ -18,8 +18,8 @@
                     <tbody>
                         <% sensors.forEach(function(sensor) { %>
                             <% sensor_id = sensor.dev_eui%>	
-                            <tr id="info<%= sensor_id %>" class="<%= sensors.status %>">
-                                <td id="ID"><%= sensor_id  %></td>
+                            <tr id="info<%= sensor_id %>" class="<%= sensor.status %>">
+                                <td id="ID"><%= sensor.id  %></td>
                                 <td id="location"><%= sensor.location %></td>
                                 <td id="status<%= sensor_id %>" class="<%= sensor.status %>status">
                                     <% if (sensor.status == true) { %>

@@ -6,7 +6,7 @@ const knex = require('../data/db');
 
 const mountLoginRoutes = require('../features/login/routes');
 const mountLogoutRoutes = require('../features/logout/routes');
-const SendmailTransport = require('nodemailer/lib/sendmail-transport');
+// const SendmailTransport = require('nodemailer/lib/sendmail-transport');
 
 
 function isAuthenticated(req, res, next) {
@@ -41,20 +41,20 @@ router.post('/dysfonctionnement', async (req, res) => {
   	if (res.statusCode == 200)
 	{
 		console.log(req.body);
-		var sensor = await knex('sensors').select().where('dev_eui', req.body.ID, "hex").limit(1);
+		var sensor = await knex('sensors').select().where('dev_eui', req.body.ID).limit(1);
 		var errSent = req.body.flexRadioDefault;
 		switch (errSent) {
 			case 'pasDeChuteDetecte':
 				var addErr = sensor[0].err_no_fall_detected + 1;
-				await knex('sensors').select().where('dev_eui', req.body.ID, "hex").update({'err_no_fall_detected': addErr});
+				await knex('sensors').select().where('dev_eui', req.body.ID).update({'err_no_fall_detected': addErr});
 				break;
 			case 'alertesIntempestives':
 				var addErr = sensor[0].err_intempestive_alert + 1;
-				await knex('sensors').select().where('dev_eui',req.body.ID, "hex").update({'err_intempestive_alert': addErr});
+				await knex('sensors').select().where('dev_eui',req.body.ID).update({'err_intempestive_alert': addErr});
 				break;
 			case 'chuteNonDetecte':
 				var addErr = sensor[0].err_missed_fall + 1;
-				await knex('sensors').select().where('dev_eui', req.body.ID, "hex").update({'err_missed_fall': addErr});
+				await knex('sensors').select().where('dev_eui', req.body.ID).update({'err_missed_fall': addErr});
 				break;
 			case 'autre':
 				var errText = req.body.autreInfo;
@@ -65,7 +65,7 @@ router.post('/dysfonctionnement', async (req, res) => {
 					};
 					return res.redirect('/');
 				}
-				await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")).update({'err_other': errText});
+				await knex('sensors').select().where('dev_eui', req.body.ID).update({'err_other': errText});
 				break;
 			default:
 				console.log(`Désolé, erreur inconnue ${expr}.`);
