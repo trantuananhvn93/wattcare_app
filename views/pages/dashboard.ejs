@@ -19,7 +19,7 @@
                     </thead>
                     <tbody>
                         <% sensors.forEach(function(sensor) { %>
-                            <% sensor_id = sensor.dev_eui.toString('hex')%>	
+                            <% sensor_id = sensor.dev_eui%>	
                             <tr id="info<%= sensor_id %>" class="<%= sensors.status %>">
                                 <td id="ID"><%= sensor_id  %></td>
                                 <td id="location"><%= sensor.location %></td>

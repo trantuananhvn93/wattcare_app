@@ -33,10 +33,6 @@ router.get('/', isAuthenticated, async (req, res) => {
 
   var sensors = await knex('sensors');
   // console.log(sensors);
-  let id = sensors[0].dev_eui;
-
-  var device_up = await knex_chirpstack('device_up').select().where('dev_eui', id);
-  console.log("DEVICE UP TABLE", device_up);
 
   res.render('pages/dashboard', {
     sensors: sensors,
@@ -50,9 +46,9 @@ router.get('/', isAuthenticated, async (req, res) => {
 router.post('/dysfonctionnement', async (req, res) => {
   if (res.statusCode == 200)
 	{
-    var sensor = await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")).limit(1);
+    var sensor = await knex('sensors').select().where('dev_eui', req.body.ID).limit(1);
     var err = sensor[0].error + 1;
-    await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")).update({'error': err});
+    await knex('sensors').select().where('dev_eui', req.body.ID).update({'error': err});
 
     res.redirect('/');
   }
@@ -61,16 +57,17 @@ router.post('/dysfonctionnement', async (req, res) => {
 router.post('/resetAlarm', async (req, res) => {
   if (res.statusCode == 200)
 	{ 
-    await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")).update({status: false});
+    await knex('sensors').select().where('dev_eui', req.body.ID).update({status: false});
     // console.log("ANH: ", await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")));
 
     res.redirect('/');
   }
 });
 
-const listenPSQL = require("../features/refresh/trigger");
-listenPSQL.connect();
+// const listenPSQL = require("../features/refresh/trigger");
+// listenPSQL.connect();
 
+const mqtt_client = require("../features/mqtt/controller");
 
 // refresh page when trigger
 let clients = [];
@@ -106,7 +103,6 @@ function eventsHandler(request, response, next) {
 }
 
 router.get('/events', eventsHandler);
-
 
 mountLoginRoutes(router);
 mountLogoutRoutes(router);
