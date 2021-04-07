@@ -51,31 +51,3 @@ function tailleMax(element, max) {
 	}
 	document.getElementById('textHelp').innerHTML = 'Saisir 100 caractères maximum.<br>Disponible: ' + carLeft;
 }
-
-/* Connexion pour sent event */
-// source.onopen = () => {
-//   console.log('connected');
-// };
-
-// /* Gestion des erreurs pour la connexion sent event */
-// source.onerror = event => {
-//   console.log(event);
-//   if (source.readyState === source.CLOSED) {
-//     /* Traitement en cas de perte de connexion définitif avec le serveur */
-//   }
-//   if (source.readyState === source.CONNECTING) {
-//     /* En cas de perte de connexion temporaire avec le serveur */
-//   }
-// };
-// /* Récupération du message provenant du server */
-// /* Le contenu du message est dans la propriété 'data' */
-// source.onmessage = event => {
-// 	// console.log(event.data);
-// 	json = JSON.parse(event.data);
-// 	if (json.refresh){
-// 		location.reload();
-// 	}
-// };
-
-/* fermeture de la connexion */
-// source.close();

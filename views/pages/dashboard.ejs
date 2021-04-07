@@ -74,7 +74,7 @@
     // document.addEventListener
     const source = new EventSource('/events');
 
-    source.addEventListener('message', event => {
+    source.onmessage = (event) => {
         console.log('------ Got event from backend --------');
         // alert('Got', event.data);
 
@@ -84,5 +84,5 @@
         if (json.refresh) {
             location.reload();
         }
-    });
+    };
 </script>

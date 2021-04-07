@@ -28,7 +28,6 @@ router.get('/', isAuthenticated, async (req, res) => {
 
   var sensors = await knex('sensors').orderBy('id');
   
-  // dont write anything after render pls
   res.render('pages/dashboard', {
     sensors: sensors,
     user: user,
@@ -99,7 +98,7 @@ let clients = [];
 var event = require('../features/refresh/event').eventBus;
 
 event.on("refresh", function () {
-    // console.log('it worked');
+    console.log('it worked');
     clients.forEach(client => client.response.write(`data: ${JSON.stringify({ 'refresh': true })}\n\n`))
 });
 
