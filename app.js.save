@@ -6,7 +6,7 @@ const session = require('express-session');
 const app = express();
 
 // Open port
-app.listen('3000', '0.0.0.0', () => {
+app.listen(3000, () => {
     console.log("Server started (http://localhost:3000/) !");
 });
 
@@ -17,7 +17,7 @@ const path = require("path");
 const expressLayouts = require('express-ejs-layouts');
 // use post method
 const bodyParser = require('body-parser');
-
+aaaaaaaaaaaaaa
 
 // html rendering engine and layout
 app.set("views", path.join(__dirname, "views"));
