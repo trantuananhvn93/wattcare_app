@@ -58,3 +58,25 @@ app.use('/', indexRouter);
 app.use((req, res) => {
     res.status(404).render('pages/404');
 });
+
+
+var server      = require('http').createServer(app);
+var io          = require('socket.io')(server);
+
+server.listen(3000, () => {
+  console.log('listening on *:3000');
+});
+
+io.on('connection', (socket) => {
+  console.log('a user connected');
+
+});
+
+const mqtt_client = require("./features/mqtt/controller");
+
+var event = require('./features/refresh/event').eventBus;
+
+event.on("refresh", function () {
+    console.log('it worked');
+    io.emit('events', "refresh");
+});

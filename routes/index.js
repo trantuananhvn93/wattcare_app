@@ -90,42 +90,45 @@ router.post('/resetAlarm', async (req, res) => {
 // const listenPSQL = require("../features/refresh/trigger");
 // listenPSQL.connect();
 
-const mqtt_client = require("../features/mqtt/controller");
+// const mqtt_client = require("../features/mqtt/controller");
 
-let clients = [];
+// let clients = [];
 
-var event = require('../features/refresh/event').eventBus;
+// var event = require('../features/refresh/event').eventBus;
 
-event.on("refresh", function () {
-    console.log('it worked');
-    clients.forEach(client => client.response.write(`data: ${JSON.stringify({ 'refresh': true })}\n\n`))
-});
+// event.on("refresh", function () {
+//     console.log('it worked');
+//     clients.forEach(client => client.response.write(`data: ${JSON.stringify({ 'refresh': true })}\n\n`))
+// });
 
-function eventsHandler(request, response, next) {
-    const headers = {
-        'Content-Type': 'text/event-stream',
-        // 'Connection': 'keep-alive',
-        'Cache-Control': 'no-cache',
-		'X-Accel-Buffering': 'no'
-    };
-    response.writeHead(200, headers);
+// function eventsHandler(request, response, next) {
+//     const headers = {
+//         'Content-Type': 'text/event-stream',
+//         // 'Connection': 'keep-alive',
+//         'Cache-Control': 'no-cache',
+// 		'X-Accel-Buffering': 'no'
+//     };
+//     response.writeHead(200, headers);
 
-    const clientId = Date.now();
+//     const clientId = Date.now();
 
-    const newClient = {
-        id: clientId,
-        response
-    };
+//     const newClient = {
+//         id: clientId,
+//         response
+//     };
 
-    clients.push(newClient);
+//     clients.push(newClient);
 
-    request.on('close', () => {
-        console.log(`${clientId} Connection closed`);
-        clients = clients.filter(client => client.id !== clientId);
-    });
-}
+//     request.on('close', () => {
+//         console.log(`${clientId} Connection closed`);
+//         clients = clients.filter(client => client.id !== clientId);
+//     });
+// }
 
-router.get('/events', eventsHandler);
+// router.get('/events', eventsHandler);
+
+
+
 
 mountLoginRoutes(router);
 mountLogoutRoutes(router);
