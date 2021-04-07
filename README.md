@@ -153,3 +153,5 @@ or
 node app.js
 ```
 
+## Deployment
+tutorial SSL + Nginx [here](https://phoenixnap.com/kb/letsencrypt-nginx)
