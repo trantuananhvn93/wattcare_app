@@ -75,7 +75,7 @@
     const source = new EventSource('/events');
 
     source.addEventListener('message', event => {
-        alert('Got data');
+        console.log('------ Got event from backend --------');
         // alert('Got', event.data);
 
         // Display the event data in the `content` div
