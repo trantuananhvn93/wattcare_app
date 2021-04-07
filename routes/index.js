@@ -126,7 +126,7 @@ function eventsHandler(request, response, next) {
     });
 }
 
-// router.get('/events', eventsHandler);
+router.get('/events', eventsHandler);
 
 mountLoginRoutes(router);
 mountLogoutRoutes(router);

@@ -55,17 +55,17 @@ function tailleMax(element, max) {
 // document.addEventListener
 const source = new EventSource('/events');
 
-source.addEventListener('message', event => {
-	// console.log('Got', message);
+// source.addEventListener('message', event => {
+// 	// console.log('Got', message);
 
-	// Display the event data in the `content` div
-	// document.querySelector('#content').innerHTML = event.data;
-	json = JSON.parse(event.data);
-	if (json.refresh) {
-		location.reload();
-	}
+// 	// Display the event data in the `content` div
+// 	// document.querySelector('#content').innerHTML = event.data;
+// 	json = JSON.parse(event.data);
+// 	if (json.refresh) {
+// 		location.reload();
+// 	}
 
-});
+// });
 
 /* Connexion pour sent event */
 // source.onopen = () => {
@@ -84,13 +84,13 @@ source.addEventListener('message', event => {
 // };
 // /* Récupération du message provenant du server */
 // /* Le contenu du message est dans la propriété 'data' */
-// source.onmessage = event => {
-// 	console.log(event.data);
-// 	json = JSON.parse(event.data);
-// 	if (json.refresh){
-// 		location.reload();
-// 	}
-// };
+source.onmessage = event => {
+	// console.log(event.data);
+	json = JSON.parse(event.data);
+	if (json.refresh){
+		location.reload();
+	}
+};
 
 /* fermeture de la connexion */
 // source.close();
