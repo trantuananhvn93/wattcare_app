@@ -33,7 +33,6 @@ client.on('message', (topic, message) => {
     console.log('received message %s', topic);
     if (match(process.env.TTN_TOPIC_UP, topic)) {
         handle_message_up(message);
-        event.emit('refresh');
     }
 
 });
@@ -55,6 +54,7 @@ async function handle_message_up(message) {
     // update table sensor
     if (payload.message == "fall") {
         await knex('sensors').select().where('dev_eui', dev_eui).update({ 'status': true });
+        event.emit('refresh');
     }
 }
 

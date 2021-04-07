@@ -2,65 +2,89 @@
 
 <div class="wrapper">
     <%- include('../partials/navbar'); %>
-    <%- include('../partials/sidebar'); %>
-    <%- include('../partials/alert'); %>
-    <%- include('../partials/modal'); %>
-    <div class="container">
-        <div class="col-md-10 col-md-offset-2" id="accordion">
-            <div class="fresh-table">
-                <table id="fresh-table" class="table table-borderless centre">
-                    <thead>
-                        <th data-field="id" id="ID">ID</th>
-                        <th data-field="location" data-sortable="true" id="location">N° Chambre</th>
-                        <th data-field="status" data-sortable="false" id="status">Etat</th>
-                        <th data-field="actions" data-formatter="operateFormatter" data-events="operateEvents">Actions</th>
-                    </thead>
-                    <tbody>
-                        <% sensors.forEach(function(sensor) { %>
-                            <% sensor_id = sensor.dev_eui%>	
-                            <tr id="info<%= sensor_id %>" class="<%= sensor.status %>">
-                                <td id="ID"><%= sensor.id  %></td>
-                                <td id="location"><%= sensor.location %></td>
-                                <td id="status<%= sensor_id %>" class="<%= sensor.status %>status">
-                                    <% if (sensor.status == true) { %>
-                                        ALERTE
-                                    <% } else { %>
-                                        OK
-                                    <% } %>    
-                                </td>
-                            <% if (sensor.status) { %>
-                                <td>
-                                    <a data-toggle="collapse" data-target="#collapse<%= sensor_id %>"  onclick="toggleImg('imgDown<%= sensor_id %>', 'imgUp<%= sensor_id %>')">
+        <%- include('../partials/sidebar'); %>
+            <%- include('../partials/alert'); %>
+                <%- include('../partials/modal'); %>
+                    <div class="container">
+                        <div class="col-md-10 col-md-offset-2" id="accordion">
+                            <div class="fresh-table">
+                                <table id="fresh-table" class="table table-borderless centre">
+                                    <thead>
+                                        <th data-field="id" id="ID">ID</th>
+                                        <th data-field="location" data-sortable="true" id="location">N° Chambre</th>
+                                        <th data-field="status" data-sortable="false" id="status">Etat</th>
+                                        <th data-field="actions" data-formatter="operateFormatter" data-events="operateEvents">Actions</th>
+                                    </thead>
+                                    <tbody>
+                                        <% sensors.forEach(function(sensor) { %>
+                                            <% sensor_id = sensor.dev_eui%>
+                                                <tr id="info<%= sensor_id %>" class="<%= sensor.status %>">
+                                                    <td id="ID">
+                                                        <%= sensor.id  %>
+                                                    </td>
+                                                    <td id="location">
+                                                        <%= sensor.location %>
+                                                    </td>
+                                                    <td id="status<%= sensor_id %>" class="<%= sensor.status %>status">
+                                                        <% if (sensor.status == true) { %>
+                                                            ALERTE
+                                                            <% } else { %>
+                                                                OK
+                                                                <% } %>
+                                                    </td>
+                                                    <% if (sensor.status) { %>
+                                                        <td>
+                                                            <a data-toggle="collapse" data-target="#collapse<%= sensor_id %>" onclick="toggleImg('imgDown<%= sensor_id %>', 'imgUp<%= sensor_id %>')">
                                         <img id="imgDown<%= sensor_id%>" style="display:inline" src="./image/FLECHE_BAS_VERT.png" alt=""/>
                                         <img id="imgUp<%= sensor_id %>" style="display:none" src="./image/FLECHE_HAUT_VERT.png" alt=""/>
                                     </a>
-                                </td>
-                            </tr>
-                            
-                            <tr id="message<%= sensor_id %>" class="<%= sensor.status %>">
-                                <td colspan="5">
-                                    <div id="collapse<%= sensor_id %>" class="collapse">
-                                        <div class="card-body">
-                                            CHAMBRE N°<%= sensor.location %><br>"Le patient semble avoir chuté"
-                                        </div>
-                                        <div>
-                                            <form action="/resetAlarm" method="POST" id="gauche">
-                                                <input name="ID" style="display:none" value=<%= sensor_id %>>
-                                                <button type="submit" id="submitGauche">VALIDER - PATIENT PRIS EN CHARGE</button>
-                                            </form>
-                                            <div id="droite">
-                                                <input name="ID" style="display:none" value="<%= sensor_id %>">
-                                                <button type="button" id="submitDroite" data-toggle="modal" data-target="#modalDysfonctionnementWattcare" onclick="saveValue('<%= sensor_id %>')">SIGNALER UN DYSFONCTIONNEMENT</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <% } %>
-                        <% }); %>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+                                                        </td>
+                                                </tr>
+
+                                                <tr id="message<%= sensor_id %>" class="<%= sensor.status %>">
+                                                    <td colspan="5">
+                                                        <div id="collapse<%= sensor_id %>" class="collapse">
+                                                            <div class="card-body">
+                                                                CHAMBRE N°
+                                                                <%= sensor.location %><br>"Le patient semble avoir chuté"
+                                                            </div>
+                                                            <div>
+                                                                <form action="/resetAlarm" method="POST" id="gauche">
+                                                                    <input name="ID" style="display:none" value=<%=s ensor_id %>>
+                                                                    <button type="submit" id="submitGauche">VALIDER - PATIENT PRIS EN CHARGE</button>
+                                                                </form>
+                                                                <div id="droite">
+                                                                    <input name="ID" style="display:none" value="<%= sensor_id %>">
+                                                                    <button type="button" id="submitDroite" data-toggle="modal" data-target="#modalDysfonctionnementWattcare" onclick="saveValue('<%= sensor_id %>')">SIGNALER UN DYSFONCTIONNEMENT</button>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <% } %>
+                                                    <% }); %>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
 </div>
+
+
+<script>
+    // document.addEventListener
+    const source = new EventSource('/events');
+
+    source.addEventListener('message', event => {
+        alert('Got data');
+        // alert('Got', event.data);
+
+        // Display the event data in the `content` div
+        // document.querySelector('#content').innerHTML = event.data;
+        json = JSON.parse(event.data);
+        if (json.refresh) {
+            location.reload();
+        }
+
+    });
+</script>
