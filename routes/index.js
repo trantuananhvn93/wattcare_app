@@ -104,7 +104,7 @@ event.on("refresh", function () {
 function eventsHandler(request, response, next) {
     const headers = {
         'Content-Type': 'text/event-stream',
-        'Connection': 'keep-alive',
+        // 'Connection': 'keep-alive',
         'Cache-Control': 'no-cache',
 		'X-Accel-Buffering': 'no'
     };
