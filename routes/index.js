@@ -92,7 +92,6 @@ router.post('/resetAlarm', async (req, res) => {
 
 const mqtt_client = require("../features/mqtt/controller");
 
-// refresh page when trigger
 let clients = [];
 
 var event = require('../features/refresh/event').eventBus;
@@ -106,7 +105,8 @@ function eventsHandler(request, response, next) {
     const headers = {
         'Content-Type': 'text/event-stream',
         'Connection': 'keep-alive',
-        'Cache-Control': 'no-cache'
+        'Cache-Control': 'no-cache',
+		'X-Accel-Buffering': 'no'
     };
     response.writeHead(200, headers);
 
