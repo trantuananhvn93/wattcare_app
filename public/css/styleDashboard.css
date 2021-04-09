@@ -21,6 +21,12 @@ button{
 	height: 30px;
 	border: none;
 }
+hr{
+    margin: 0;
+    opacity: 1;
+	height: 1px !important;
+	background-color: #2BD987;
+}
 .close{
     position: absolute;
     right: 10px;
@@ -31,6 +37,11 @@ button{
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
+.hrSidebarWattcare{
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+}
+
 .wrapper {
     display: flex;
     width: 100%;
@@ -62,10 +73,6 @@ button{
 	margin-top: 80px;
 	width: 40px;
 	height: 40px;
-}
-#sidebar hr{
-	height: 0.25px;
-	background-color: #2BD987;
 }
 #sidebar ul.components {
     padding: 20px 0; /* décalage vertical */
@@ -132,7 +139,7 @@ button{
     background-image: url('../image/REGLAGE_FOND_BLEU.png');
 }
 #content #decoImg{
-	width: 20px;
+	width: 24px;
 	height: 20px;
 	margin-right: 10px;
 }
@@ -141,68 +148,90 @@ button{
 	color: #FFF;
     background: #2BD987;
 	border-radius: 30px 30px 30px 30px;
-	font-size: 0.6em;
+	font-size: 0.8em;
+    /* font-weight: bold; */
 }
 /* ---------------------------------------------------
     CONTENT TABLE STYLE
 ----------------------------------------------------- */
-.centre{
-	text-align: center;
+.card-body{
+    text-align: left;
+    margin-left: 8%;
 }
-#submitGauche{
-	background: #2BD987;
-	color: #FFF;
-    float: right;
-    margin-right: 7%;
+#collapseNoAlertWattcare{
+    background-color: #ececec;
 }
-#submitDroite{
-	color: #0535AF;
-    float: left;
-    margin-left: 7%;
+.mainRowWattcare{
+    cursor: pointer;
 }
-.fresh-table form{
-    width: 50%;
-}
-.fresh-table #gauche{
-    float:left;
-}
-.fresh-table #droite{
-    overflow:auto;
-}
-.fresh-table{
+.tableWattcare{
+    color: #0535AF !important;
 	margin-top: 18vh;
 	margin-left: 10%;
     box-shadow: -15px 27px 69px rgba(0,0,0,.20);
 	background-color: #F0f0f0;
 	border-radius: 50px 50px 0 0;
-    padding-bottom: 15px;
+    margin-bottom: 5vh;
+    padding-bottom: 3vh;
+    text-align: center;
 }
-.card-body{
-    text-align: left;
-    margin-left: 8%;
+.collapseBodyWattcare{
+    padding-top: 2vh;
+    padding-bottom: 2vh;
+    /* margin-bottom: 2vh; */
 }
-#fresh-table{
-    color: #0535AF !important;
+.tableWattcare .col-3{
+    padding-top: 2vh;
+    margin-bottom: 2vh;
 }
-#ID{
-   text-align: end;
+.tableHeadWattcare{
+    font-weight: bold;
+    padding-top: 2vh;
+    margin-bottom: 2vh;
 }
-#status {
-    width: 100px;
+.hrBlueWattcare{
+    margin: 0;
+    opacity: 1;
+	height: 1px !important;
+	background-color: #0535AF;
 }
-.fresh-table img{
-	width: 20px;
-	height: 20px;
+.tableWattcare img{
+	width: 24px;
+	height: 24px;
 }
-.fresh-table .true {
+.tableWattcare .true {
     background-color: #0535AF;
     color: #FFF;
 }
-
-.fresh-table .truestatus{
+.tableWattcare .truestatus{
     color: #2BD987;
     font-weight: bold;
 }
+.tableWattcare button{
+    width: 245px;
+}
+#submitGauche{
+	background: #2BD987;
+	color: #FFF;
+}
+#submitDroite{
+	color: #0535AF;
+}
+#submitDysfonctionnement{
+    background: #0535AF;
+    color: #FFF;
+}
+
+.row.no-gutter {
+    margin-left: 0;
+    margin-right: 0;
+} 
+.row.no-gutter [class*='col-']:not(:first-child),
+.row.no-gutter [class*='col-']:not(:last-child) {
+    padding-right: 0;
+    padding-left: 0;
+}
+
 /* ---------------------------------------------------
     ALERTS
 ----------------------------------------------------- */
@@ -243,12 +272,12 @@ button{
 /* ---------------------------------------------------
     DYSFONCTIONNEMENT
 ----------------------------------------------------- */
-#modalDysfonctionnementWattcare{
+.modalWattcare{
     font-family: 'Open Sans', sans-serif;
+    color:#0535AF;
     /* font-size: 1em; */
     /* font-weight: 300; */
     /* line-height: 0.3em; */
-    color:#0535AF;
 }
 
 .modal-footer button{
@@ -267,6 +296,31 @@ button{
 }
 #formCheckWattcare, #autreDysfonctionnement{
     margin-top: 3vh;
+}
+
+/* ---------------------------------------------------
+    UNAVAILABLE
+----------------------------------------------------- */
+.unavailableBodyWattcare{
+    text-align: center;
+    /* background-color: #000; */
+}
+
+#unavailableImgWattcare {
+	max-width: 70%;
+	height: auto;
+}
+.margeTop{
+    margin-top: 6vh;
+}
+
+h6{
+    text-align: center;
+}
+
+input[type=submit]:hover {
+    background-color: white;
+    color: #53af57;
 }
 
 /* ---------------------------------------------------
