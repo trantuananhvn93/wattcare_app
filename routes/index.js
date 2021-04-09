@@ -71,7 +71,7 @@ router.post('/dysfonctionnement', async (req, res) => {
 				break;
 		}
 		//Déclanche le trigger
-		// await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")).update({status: false});
+		await knex('sensors').select().where('dev_eui', req.body.ID).update({status: false});
 		req.session.messages = {"info": "Le dysfonctionnement a ete pris en charge !"};
 		res.redirect('/');
 	}
