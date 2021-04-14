@@ -23,6 +23,7 @@
     "fs": "^0.0.1-security",
     "joi": "^17.4.0",
     "knex": "^0.95.2",
+    "moment": "^2.29.1",
     "mqtt": "^4.2.6",
     "mqtt-match": "^2.0.3",
     "nodemailer": "^6.5.0",

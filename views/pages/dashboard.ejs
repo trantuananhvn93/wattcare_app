@@ -6,15 +6,16 @@
     <%- include('../partials/alert'); %>
     <%- include('../partials/dysfoncModal'); %>
     <%- include('../partials/unavailableModal'); %>
-    <div class="container-fluid">
-        <div class="col-9 tableWattcare">
+    <div class="container">
+        <div class="col-10 offset-1 tableWattcare" id="tableWattcare">
             <div class="row no-gutter tableHeadWattcare">
                 <div class="col-3">ID</div>
-                <div class="col-3">N° Chambre</div>
+                <div class="col-3">Chambre</div>
                 <div class="col-3">État</div>
                 <div class="col-3">Actions</div>
             </div>
             <% sensors.forEach(function(sensor) { %>
+                <% if (sensor.org_id == user.id) { %>
                 <% sensor_id = sensor.dev_eui%>
                 <div class="tableBodyWattcare">
                     <div class="row no-gutter <%= sensor.status %> mainRowWattcare" id="info<%= sensor_id %>" data-toggle="collapse" data-target="#collapse<%= sensor_id %>" onclick="toggleImg('imgDown<%= sensor_id %>', 'imgUp<%= sensor_id %>')">
@@ -42,17 +43,17 @@
                             <hr class="hrGreenWattcare">
                             <div class="collapseBodyWattcare">
                                 <div class="card-body">
-                                    CHAMBRE N° 369<br>"Le patient semble avoir chuté"
+                                    CHAMBRE N° 369<br>Le patient semble avoir chuté à <%= sensor.last_event_date %>
                                 </div>
                                 <div class="row justify-content-center ">
-                                    <div class="col-12 col-lg-5">
+                                    <div class="col-12 col-xl-5">
                                         <form action="/resetAlarm" method="POST" id="gauche">
                                             <input name="ID" style="display:none" value=<%= sensor_id %>>
                                             <button type="submit" id="submitGauche">VALIDER - PATIENT PRIS EN CHARGE</button>
                                         </form>
                                     </div>
                                 
-                                    <div class="col-12 col-lg-5">
+                                    <div class="col-12 col-xl-5">
                                         <input name="ID" style="display:none" value="<%= sensor_id %>">
                                         <button type="button" id="submitDroite" data-toggle="modal" data-target="#modalDysfonctionnementWattcare" onclick="saveValue('<%= sensor_id %>')">SIGNALER UN DYSFONCTIONNEMENT</button>
                                     </div>
@@ -67,6 +68,7 @@
                         <% } %>
                     </div>
                 </div>
+                <% } %>
             <% }); %>
         </div>
     </div>

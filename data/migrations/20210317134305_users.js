@@ -35,6 +35,10 @@ exports.up = async function up(knex) {
     table
       .string('password', 60)
       .notNullable();
+
+    table
+      .string('nickname', 150);
+
     table
       .timestamp('created_at')
       .notNullable()
@@ -62,6 +66,9 @@ exports.up = async function up(knex) {
       .timestamp('created_at')
       .notNullable()
       .defaultTo(knex.fn.now());
+    table
+      .timestamp('last_event_date')
+      .defaultTo(knex.fn.now());      
     table.unique('dev_eui');
   });
 

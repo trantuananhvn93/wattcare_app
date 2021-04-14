@@ -4,6 +4,10 @@ const router = express.Router();
 
 const knex = require('../data/db');
 
+var moment = require('moment'); // require
+// moment().format();
+// console.log(moment);
+
 const mountLoginRoutes = require('../features/login/routes');
 const mountLogoutRoutes = require('../features/logout/routes');
 // const SendmailTransport = require('nodemailer/lib/sendmail-transport');
@@ -20,20 +24,44 @@ function isAuthenticated(req, res, next) {
 
 router.get('/', isAuthenticated, async (req, res) => {
 
-  const user = await knex('users');
-  //console.log(user);
+	console.log(req.session.user);
 
-  const organisation = await knex('organisations');
-  //console.log(organisation);
+	const user = await knex('users');
+	console.log(user);
+	
+	const organisation = await knex('organisations');
+	console.log(organisation);
 
-  var sensors = await knex('sensors').orderBy('id');
-  
-  res.render('pages/dashboard', {
-    sensors: sensors,
-    user: user,
-    organisation: organisation
-  });
-  
+	var sensors = await knex('sensors').orderBy('id');
+
+	for(var i in user){
+		if (user[i].id == req.session.user.id){
+			break;
+		}
+	}
+	console.log("i = ", i);
+	const user_info = {id: req.session.user.id, nickname: user[i].nickname};
+
+	for(var j in organisation){
+		if (organisation[j].id == user[i].org_id){
+			break;
+		}
+	}
+	console.log("j = ", j);
+	const organisation_info = {id: organisation[j].id, name: organisation[j].name, adress: organisation[j].adress};
+	console.log("user_info: ", user_info);
+	console.log("organisation_info: ", organisation_info);
+
+	sensors.forEach(function(sensor) {
+		sensor.last_event_date = moment(sensor.last_event_date).format("hh:mm DD-MM-YYYY");
+	});
+
+
+	res.render('pages/dashboard', {
+		sensors: sensors,
+		user: user_info,
+		organisation: organisation_info
+	});
 });
 
 router.post('/dysfonctionnement', async (req, res) => {

@@ -54,7 +54,7 @@ async function handle_message_up(message) {
 
     // update table sensor
     if (payload.message == "fall") {
-        await knex('sensors').select().where('dev_eui', dev_eui).update({ 'status': true });        
+        await knex('sensors').select().where('dev_eui', dev_eui).update({ 'status': true, 'last_event_date':  received_at});        
     }
 }
 
