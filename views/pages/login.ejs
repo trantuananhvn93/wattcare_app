@@ -1,23 +1,16 @@
 <link rel="stylesheet" href="css/styleAuthentication.css">
 
 <div class="wrapper">
-    <img id="img1" src="./image/LOGO_WATTCARE_BLANC.png" alt=""/>
-    <div class="container">
-        <form action="/login" method="POST">
-            <h1>Connectez-vous</h1>
-            <!-- Display errors -->
-<% if (locals.messages && messages.errors) { %>
-    <% Object.keys(messages.errors).filter(function(key) { return ['username', 'invalidEmailOrPassword', 'internalServerError'].includes(key); }).map(function(key) { %>
-      <strong class="invalid-feedback" style="display: block">
-        <%= messages.errors[key] %>
-      </strong>
-    <% }) %>
-  <% } %>
-            <br>
-            <input type="text" placeholder="Identifiant" name="username" required>
-            <input type="password" placeholder="Mot de passe" name="password" required>
-            <input type="submit" id='submit' value='SE CONNECTER'>
-        </form>
-    
+	<!-- Display errors -->
+  	<%- include('../partials/alert'); %>
+	<img id="img1" src="./image/LOGO_WATTCARE_BLANC.png" alt=""/>
+	<div class="container">
+		<form action="/login" method="POST">
+			<h1>Connectez-vous</h1>
+			<br>
+			<input type="text" placeholder="Identifiant" name="username" required>
+			<input type="password" placeholder="Mot de passe" name="password" required>
+			<input type="submit" id='submit' value='SE CONNECTER'>
+		</form>
     </div>
 </div>

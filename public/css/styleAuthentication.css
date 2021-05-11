@@ -1,1 +1,127 @@
-@import url(https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap);.wrapper{display:flex;width:100%;align-items:stretch;justify-content:space-between}body{font-family:'Open Sans',sans-serif;background:url(../image/FOND_CONNECT_REDIM_MIN.jpg) no-repeat center center fixed;-webkit-background-size:cover;-moz-background-size:cover;-o-background-size:cover;background-size:cover}.container{width:400px;margin:0 auto;margin-top:25vh}form{width:100%;padding:30px;background:#0535AFBF}.container h1{width:60%;margin:0 auto;padding-bottom:20px;font-size:1.5em;color:#fff}input[type=password],input[type=text]{width:90%;padding:8px;margin:10px 5%;display:inline-block;border:none;border-radius:30px 30px 30px 30px;box-sizing:border-box;background-color:#fffFFF33;color:#2bd987;text-indent:10px}input[type=text]::placeholder{background-image:url(../image/ID_VERT.png)}input[type=password]::placeholder{background-image:url(../image/MDP_VERT.png)}input[type=password]::placeholder,input[type=text]::placeholder{background-position:10px 2px;background-repeat:no-repeat;background-size:15px 15px;text-indent:40px;color:#2bd987}input[type=submit]{background-color:#2bd987;border-radius:30px 30px 30px 30px;color:#fff;padding:8px;margin:15% 16.5%;border:none;cursor:pointer;width:67%}input[type=submit]:hover{background-color:#fff;color:#53af57}#img1{height:40px;width:250px;position:absolute;top:50px;left:50px}.copyRight{width:100%;text-align:center;color:#fff;position:absolute;bottom:2vh}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap');
+.wrapper {
+    display: flex;
+    width: 100%;
+    align-items: stretch;
+	justify-content: space-between;
+}
+body{
+	font-family: 'Open Sans', sans-serif;
+	background: url('../image/FOND_CONNECT_REDIM_MIN.jpg') no-repeat center center fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+.container{
+    width:400px;
+    margin:0 auto;
+    margin-top:25vh;
+}
+/* Bordered form */
+form {
+    width:100%;
+    padding: 30px;
+    background: #0535AFBF;
+}
+.container h1{
+    width: 60%;
+    margin: 0 auto;
+    padding-bottom: 20px;
+	font-size: 1.5em;
+	color: #fff;
+}
+input[type=text], input[type=password] {
+    width: 90%;
+	/* height: 20px; */
+    padding: 8px;
+    margin: 10px 5%;
+    display: inline-block;
+    border: none;
+	border-radius: 30px 30px 30px 30px;
+    box-sizing: border-box;
+	background-color: #FFFFFF33;
+	color: #2BD987;
+	text-indent: 10px;
+}
+input[type=text]::placeholder{
+	background-image: url('../image/ID_VERT.png');
+}
+input[type=password]::placeholder{
+	background-image: url('../image/MDP_VERT.png');
+}
+input[type=text]::placeholder, input[type=password]::placeholder {
+    background-position: 10px 2px;
+    background-repeat: no-repeat;
+	background-size: 15px 15px;
+    text-indent: 40px;
+	color: #2BD987;
+}
+/* Set a style for all buttons */
+input[type=submit] {
+    background-color: #2BD987;
+	border-radius: 30px 30px 30px 30px;
+    color: white;
+    padding: 8px;
+    margin: 15% 16.5%;
+    border: none;
+    cursor: pointer;
+    width: 67%;
+}
+input[type=submit]:hover {
+    background-color: white;
+    color: #53af57;
+}
+#img1 {
+	height: 40px;
+	width: 250px;
+	position: absolute;
+	top: 50px;
+	left: 50px;
+}
+.copyRight{
+    width: 100%;
+    text-align: center;
+    color: #fff;
+    position:relative;
+    bottom: -2vh;
+}
+
+/* ---------------------------------------------------
+    ALERTS
+----------------------------------------------------- */
+.close{
+    position: absolute;
+    right: 10px;
+    top: 9px;
+    background: none;
+    border-style: none;
+    color: #0535AF;
+    font-size: 1.5em;
+}
+
+/* #alertError{
+    background-image: url('../image/ALERTE.png');
+} */
+img {
+    max-width: 100%;
+	height: auto;
+}
+#alertSucess{
+    background-image: url('../image/CHECK.png');
+}
+.alertWattcare{
+    position: absolute;
+    /* width: 470px; */
+    top: 10vh;
+    right: 5vh;
+    font-weight: bold;
+    color: #dc3545;
+    /* background-repeat: no-repeat;
+	background-size: 18px 18px;
+    background-position: 25px 18px; */
+    text-indent: 40px;
+    display: block;
+    border-radius: 30px 30px 30px 30px;
+    /* padding-right: 20px; */
+}

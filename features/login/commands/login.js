@@ -24,6 +24,7 @@ function login(req, res, next) {
         return res.redirect('/login');
       }
       req.session.messages = { loggedIn: SUCCESSFULLY_LOGGED_IN };
+      req.session.user = user;
       return res.redirect('/');
     });
   })(req, res, next);
