@@ -62,6 +62,10 @@ exports.up = async function up(knex) {
       .timestamp('created_at')
       .notNullable()
       .defaultTo(knex.fn.now());
+    table
+      .timestamp('last_updated')
+      .notNullable()
+      .defaultTo(knex.fn.now());
     table.unique('dev_eui');
   });
 

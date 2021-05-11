@@ -6,8 +6,15 @@ const session = require('express-session');
 const app = express();
 
 // Open port
-app.listen('3000', '0.0.0.0', () => {
-    console.log("Server started (http://localhost:3000/) !");
+// app.listen('3000', '0.0.0.0', () => {
+//     console.log("Server started (http://localhost:3000/) !");
+// });
+
+var server      = require('http').createServer(app);
+var io          = require('socket.io')(server);
+
+server.listen(3000, () => {
+  console.log('listening on *:3000');
 });
 
 
@@ -60,12 +67,7 @@ app.use((req, res) => {
 });
 
 
-var server      = require('http').createServer(app);
-var io          = require('socket.io')(server);
 
-server.listen(3000, () => {
-  console.log('listening on *:3000');
-});
 
 io.on('connection', (socket) => {
   console.log('a user connected');
