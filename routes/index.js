@@ -5,8 +5,7 @@ const router = express.Router();
 const knex = require('../data/db');
 
 var moment = require('moment'); // require
-// moment().format();
-// console.log(moment);
+moment.locale('fr');
 
 const mountLoginRoutes = require('../features/login/routes');
 const mountLogoutRoutes = require('../features/logout/routes');
@@ -24,13 +23,13 @@ function isAuthenticated(req, res, next) {
 
 router.get('/', isAuthenticated, async (req, res) => {
 
-	console.log(req.session.user);
+	// console.log(req.session.user);
 
 	const user = await knex('users');
-	console.log(user);
+	// console.log(user);
 	
 	const organisation = await knex('organisations');
-	console.log(organisation);
+	// console.log(organisation);
 
 	var sensors = await knex('sensors').orderBy('id');
 
@@ -39,7 +38,7 @@ router.get('/', isAuthenticated, async (req, res) => {
 			break;
 		}
 	}
-	console.log("i = ", i);
+	// console.log("i = ", i);
 	const user_info = {id: req.session.user.id, nickname: user[i].nickname};
 
 	for(var j in organisation){
@@ -47,13 +46,13 @@ router.get('/', isAuthenticated, async (req, res) => {
 			break;
 		}
 	}
-	console.log("j = ", j);
+	// console.log("j = ", j);
 	const organisation_info = {id: organisation[j].id, name: organisation[j].name, adress: organisation[j].adress};
-	console.log("user_info: ", user_info);
-	console.log("organisation_info: ", organisation_info);
+	// console.log("user_info: ", user_info);
+	// console.log("organisation_info: ", organisation_info);
 
 	sensors.forEach(function(sensor) {
-		sensor.last_event_date = moment(sensor.last_event_date).format("hh:mm DD-MM-YYYY");
+		sensor.last_event_date = moment(sensor.last_event_date).format('LLLL');
 	});
 
 
