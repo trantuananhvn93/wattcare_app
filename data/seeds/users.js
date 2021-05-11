@@ -23,8 +23,7 @@ exports.seed = async function seed(knex) {
     org_id: 1,
     location: '369',
     status: 1,
-    created_at: new Date(),
-    last_updated: new Date()
+    created_at: new Date()
   });
 
   await knex('events_up').insert({
