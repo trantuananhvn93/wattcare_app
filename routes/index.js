@@ -5,11 +5,7 @@ const axios = require('axios')
 
 const knex = require('../data/db');
 
-<<<<<<< HEAD
-var moment = require('moment'); // require
-=======
 var moment = require('moment-timezone'); // require
->>>>>>> d8aa2541269c90632406705ca9199d78c7e4f62b
 moment.locale('fr');
 
 const mountLoginRoutes = require('../features/login/routes');
