@@ -44,17 +44,10 @@ hr{
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
-<<<<<<< HEAD
-.hrSidebarWattcare{
-    margin-top: 2vh;
-    margin-bottom: 3vh;
-}
-=======
 /* .hrSidebarWattcare{
     margin-top: 2vh;
     margin-bottom: 3vh;
 } */
->>>>>>> d8aa2541269c90632406705ca9199d78c7e4f62b
 
 .wrapper {
     display: flex;
@@ -65,10 +58,7 @@ hr{
 }
 .sidebarHeaderWattcare{
     margin-top: 2vh;
-<<<<<<< HEAD
-=======
     margin-left: 15px;
->>>>>>> d8aa2541269c90632406705ca9199d78c7e4f62b
 }
 #sidebar {
     min-width: 230px;
