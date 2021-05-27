@@ -1,6 +1,7 @@
 const express = require('express');
 const { required } = require('joi');
 const router = express.Router();
+const axios = require('axios')
 
 const knex = require('../data/db');
 
@@ -65,7 +66,7 @@ router.get('/', isAuthenticated, async (req, res) => {
 
 router.post('/dysfonctionnement', async (req, res) => {
   	if (res.statusCode == 200)
-	{
+	{	var alert2send = {'dev_eui':req.body.ID, "message":""};
 		console.log(req.body);
 		var sensor = await knex('sensors').select().where('dev_eui', req.body.ID).limit(1);
 		var errSent = req.body.flexRadioDefault;
@@ -73,14 +74,17 @@ router.post('/dysfonctionnement', async (req, res) => {
 			case 'pasDeChuteDetecte':
 				var addErr = sensor[0].err_no_fall_detected + 1;
 				await knex('sensors').select().where('dev_eui', req.body.ID).update({'err_no_fall_detected': addErr});
+				alert2send.message = "Pas de chute constatée";
 				break;
 			case 'alertesIntempestives':
 				var addErr = sensor[0].err_intempestive_alert + 1;
 				await knex('sensors').select().where('dev_eui',req.body.ID).update({'err_intempestive_alert': addErr});
+				alert2send.message = "Alertes intempestives";
 				break;
 			case 'chuteNonDetecte':
 				var addErr = sensor[0].err_missed_fall + 1;
 				await knex('sensors').select().where('dev_eui', req.body.ID).update({'err_missed_fall': addErr});
+				alert2send.message = "La chute n'a pas été détecté";
 				break;
 			case 'autre':
 				var errText = req.body.autreInfo;
@@ -92,11 +96,16 @@ router.post('/dysfonctionnement', async (req, res) => {
 					return res.redirect('/');
 				}
 				await knex('sensors').select().where('dev_eui', req.body.ID).update({'err_other': errText});
+				alert2send.message = errText;
 				break;
 			default:
 				console.log(`Désolé, erreur inconnue ${expr}.`);
 				break;
 		}
+
+		// send alert via http post
+		axios.post('https://hook.integromat.com/ifxer2jtsbw20dsny4o7ca2gko4krgia', alert2send)
+
 		//Déclanche le trigger
 		await knex('sensors').select().where('dev_eui', req.body.ID).update({status: false});
 		req.session.messages = {"info": "Le dysfonctionnement a ete pris en charge !"};

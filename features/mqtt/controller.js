@@ -1,7 +1,7 @@
 // garage.js
 require('dotenv').config();
 const knex = require("../../data/db");
-
+const axios = require('axios');
 const mqtt = require('mqtt');
 const match = require('mqtt-match');
 
@@ -53,6 +53,10 @@ async function handle_message_up(message) {
 
     // update table sensor
     if (payload.message == "fall") {
+        //send alert via http post
+        var alert2send = {"dev_eui": dev_eui, "message": "Une chute a été détectée"};
+        axios.post('https://hook.integromat.com/ifxer2jtsbw20dsny4o7ca2gko4krgia', alert2send)
+
         await knex('sensors').select().where('dev_eui', dev_eui).update({ 'status': true });        
         event.emit('refresh');
     }
