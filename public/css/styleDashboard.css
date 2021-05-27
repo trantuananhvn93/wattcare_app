@@ -44,10 +44,17 @@ hr{
 /* ---------------------------------------------------
     SIDEBAR STYLE
 ----------------------------------------------------- */
+<<<<<<< HEAD
 .hrSidebarWattcare{
     margin-top: 2vh;
     margin-bottom: 3vh;
 }
+=======
+/* .hrSidebarWattcare{
+    margin-top: 2vh;
+    margin-bottom: 3vh;
+} */
+>>>>>>> d8aa2541269c90632406705ca9199d78c7e4f62b
 
 .wrapper {
     display: flex;
@@ -58,6 +65,10 @@ hr{
 }
 .sidebarHeaderWattcare{
     margin-top: 2vh;
+<<<<<<< HEAD
+=======
+    margin-left: 15px;
+>>>>>>> d8aa2541269c90632406705ca9199d78c7e4f62b
 }
 #sidebar {
     min-width: 230px;
@@ -78,12 +89,14 @@ hr{
 }
 #sidebar .sidebar-header #WATTCARE_BLANC{
 	width: 170px;
-	height: auto
+	height: auto;
+    margin-left: 15px;
 }
 #sidebar .sidebar-header #ID_VERT{
 	margin-top: 10vh;
-	width: 50px;
+	width: 45px;
 	height: auto;
+    margin-left: 15px;
 }
 #sidebar ul.components {
     padding: 20px 0; /* décalage vertical */
@@ -116,13 +129,16 @@ hr{
 	border-radius: 30px 0 0 30px;
 }
 #sidebar ul li a, #sidebar ul li a:hover, #sidebar ul li a:focus {
-    background-position: 20px 15px;
+    background-position: 18px 10px;
     background-repeat: no-repeat;
 	background-size: 19px 19px;
     text-indent: 40px;
-    padding: 15px;
     font-size: 0.9em;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 5px;
     display: block;
+    margin-left: 15px;
 }
 /* ---------------------------------------------------
     CONTENT NAVBAR STYLE

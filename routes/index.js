@@ -5,7 +5,11 @@ const axios = require('axios')
 
 const knex = require('../data/db');
 
+<<<<<<< HEAD
 var moment = require('moment'); // require
+=======
+var moment = require('moment-timezone'); // require
+>>>>>>> d8aa2541269c90632406705ca9199d78c7e4f62b
 moment.locale('fr');
 
 const mountLoginRoutes = require('../features/login/routes');
@@ -52,15 +56,16 @@ router.get('/', isAuthenticated, async (req, res) => {
 	// console.log("user_info: ", user_info);
 	// console.log("organisation_info: ", organisation_info);
 
-	sensors.forEach(function(sensor) {
-		sensor.last_event_date = moment(sensor.last_event_date).format('LLLL');
+	 sensors.forEach(function(sensor) {
+		sensor.last_event_date = moment(sensor.last_event_date).tz('Europe/Paris').format('LLLL');
 	});
 
 
 	res.render('pages/dashboard', {
 		sensors: sensors,
 		user: user_info,
-		organisation: organisation_info
+		organisation: organisation_info,
+		moment: moment
 	});
 });
 
