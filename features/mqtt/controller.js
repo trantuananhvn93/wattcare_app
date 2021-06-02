@@ -50,9 +50,10 @@ async function handle_message_up(message) {
     };
     console.log(data);
     await knex('events_up').insert(data);
-
+    
     // update table sensor
     if (payload.message == "fall") {
+        
         //send alert via http post
         var alert2send = { "dev_eui": dev_eui, "message": "Une chute a été détectée" };
         axios.post('https://hook.integromat.com/ifxer2jtsbw20dsny4o7ca2gko4krgia', alert2send)
@@ -61,7 +62,7 @@ async function handle_message_up(message) {
         event.emit('refresh');
     }
     else if (payload.message == "active") {
-        await knex('sensors').select().where('dev_eui', dev_eui).update({ 'last_event_date': received_at });
+        await knex('sensors').select().where('dev_eui', dev_eui).update({ 'last_ping': received_at });
     }
 }
 

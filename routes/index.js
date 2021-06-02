@@ -119,7 +119,9 @@ router.post('/resetAlarm', async (req, res) => {
 	{ 
     await knex('sensors').select().where('dev_eui', req.body.ID).update({status: false});
     // console.log("ANH: ", await knex('sensors').select().where('dev_eui', Buffer.from(req.body.ID, "hex")));
-
+	var alert2send = {'dev_eui':req.body.ID, "message":"La chute a été validée sur la plateforme!"};
+	// send alert via http post
+	axios.post('https://hook.integromat.com/ifxer2jtsbw20dsny4o7ca2gko4krgia', alert2send);
     res.redirect('/');
   }
 });
